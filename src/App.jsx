@@ -5,6 +5,7 @@ import AddTask from './components/AddTask';
 import TaskList from './components/TaskList';
 import CalendarPage from './components/CalendarPage';
 import ContactPage from './components/ContactPage';
+import React from 'react';
 import './styles.css';
 
 function App() {
@@ -42,7 +43,8 @@ function App() {
 
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
-  };
+    const Footer = () => 
+      };
 
   return (
     <Router>
@@ -70,6 +72,12 @@ function App() {
               </Link>
             </li>
           </ul>
+          <div className="footer-content">
+        <p>&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
+        <div className="footer-links">
+          <a href="/privacy-policy">Política de Privacidad</a>
+          <a href="/terms-of-service">Términos de Servicio</a>
+        </div>
         </div>
 
         {/* Contenido principal */}
