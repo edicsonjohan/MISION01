@@ -1,0 +1,268 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;  /* Fondo oscuro */
+  color: white;               /* Texto blanco para contraste */
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  height: 100vh;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -70px; /* Sidebar oculto por defecto */
+  width: 70px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar.open {
+  left: 0; /* Mostrar el sidebar cuando está abierto */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+  background-color: #444;
+}
+
+.sidebar .close-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Contenido principal */
+.content {
+  margin-left: 0;
+  width: 100%;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content .sidebar-toggle {
+  background-color: #4CAF50;  /* Color verde para el botón */
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.content h1 {
+  text-align: center;
+  color: #fff;   /* Título blanco */
+  margin-bottom: 20px;
+}
+
+/* Tarjeta para contener el formulario */
+.card {
+  background-color: #2c2c2c; /* Fondo oscuro para la tarjeta */
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px; /* Máximo ancho de la tarjeta */
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Centrar los elementos dentro de la tarjeta */
+}
+
+.card h1 {
+  color: #fff;   /* Título blanco */
+  margin-bottom: 20px;
+  text-align: center;  /* Alineamos el título al centro */
+}
+
+/* Estilos para los inputs, textarea y botón */
+form input, form textarea, form button {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #333;  /* Fondo oscuro */
+  color: white;            /* Texto blanco */
+  width: 100%;             /* Que ocupen el 100% del ancho disponible */
+}
+
+form button {
+  background-color: #4CAF50; /* Color verde para el botón */
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+form button:hover {
+  background-color: #45a049; /* Cambio de color al pasar el ratón */
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  border: 1px solid #646cff; /* Borde azul al hacer foco */
+}
+
+/* Estilos para las tareas */
+.task {
+  background-color: #2c2c2c; /* Fondo oscuro para las tareas */
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task.completed {
+  background-color: #4caf50; /* Tareas completadas con fondo verde */
+  text-decoration: line-through; /* Texto tachado */
+}
+
+.task h3 {
+  margin: 0;
+  color: #fff; /* Texto blanco para el título de la tarea */
+}
+
+button {
+  margin: 5px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #333; /* Fondo oscuro para los botones */
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #646cff; /* Color azul al pasar el ratón */
+}
+
+/* Estilo para el número de tareas pendientes */
+p {
+  color: #fff; /* Texto blanco */
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* Responsividad en pantallas pequeñas */
+@media (max-width: 600px) {
+  .content {
+    margin-left: 0;
+  }
+
+  .card {
+    width: 90%; /* Ajustamos el tamaño de la tarjeta en pantallas pequeñas */
+  }
+}
+.calendar-page, .contact-page {
+  text-align: center;
+  padding: 20px;
+}
+
+.contact-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-page input, .contact-page textarea {
+  margin: 10px;
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+}
+/* Estilos para la barra lateral */
+.sidebar {
+  width: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  width: 200px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 20px;
+  text-align: center;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.content {
+  margin-left: 60px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.open + .content {
+  margin-left: 200px;
+}
