@@ -1,25 +1,32 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { FaHome, FaTasks, FaCog, FaBars, FaRegCalendar, FaUser } from 'react-icons/fa';
-import AddTask from './components/AddTask';
-import TaskList from './components/TaskList';
-import CalendarPage from './components/CalendarPage';
-import ContactPage from './components/ContactPage';
-import React from 'react';
-import './styles.css';
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  FaHome,
+  FaTasks,
+  FaCog,
+  FaBars,
+  FaRegCalendar,
+  FaUser,
+} from "react-icons/fa";
+import AddTask from "./components/AddTask";
+import TaskList from "./components/TaskList";
+import CalendarPage from "./components/CalendarPage";
+import ContactPage from "./components/ContactPage";
+import React from "react";
+import "./styles.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(savedTasks);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = (data) => {
@@ -43,14 +50,13 @@ function App() {
 
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
-    const Footer = () => 
-      };
+  };
 
   return (
     <Router>
-      <div className={`app-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}>
         {/* Sidebar */}
-        <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
           {/* Botón verde para abrir/cerrar sidebar */}
           <button
             className="sidebar-toggle"
@@ -65,19 +71,24 @@ function App() {
                 <FaHome />
               </Link>
             </li>
-            <li><Link to="/calendar"><FaRegCalendar /></Link></li>
+            <li>
+              <Link to="/calendar">
+                <FaRegCalendar />
+              </Link>
+            </li>
             <li>
               <Link to="/contact" onClick={() => setIsSidebarOpen(false)}>
-                <FaUser/>
+                <FaUser />
               </Link>
             </li>
           </ul>
           <div className="footer-content">
-        <p>&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
-        <div className="footer-links">
-          <a href="/privacy-policy">Política de Privacidad</a>
-          <a href="/terms-of-service">Términos de Servicio</a>
-        </div>
+            <p>&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
+            <div className="footer-links">
+              <a href="/privacy-policy">Política de Privacidad</a>
+              <a href="/terms-of-service">Términos de Servicio</a>
+            </div>
+          </div>
         </div>
 
         {/* Contenido principal */}
@@ -99,8 +110,14 @@ function App() {
                     required
                   />
                   <AddTask onAdd={addTask} />
-                  <p>{tasks.filter((t) => !t.completed).length} tareas pendientes</p>
-                  <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
+                  <p>
+                    {tasks.filter((t) => !t.completed).length} tareas pendientes
+                  </p>
+                  <TaskList
+                    tasks={tasks}
+                    onToggle={toggleTask}
+                    onDelete={deleteTask}
+                  />
                 </div>
               }
             />
