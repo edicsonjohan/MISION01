@@ -1,40 +1,59 @@
-/* Dark mode + Glassmorphism */
+/* ========== Global ========== */
 body {
   margin: 0;
   font-family: 'Helvetica Neue', sans-serif;
   background: linear-gradient(135deg, #1f1f1f, #121212);
   color: #f0f0f0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-  max-width: 500px;
-  margin: 3rem auto;
+/* ========== Contenedor principal ========== */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* ========== Título ========== */
 h1 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #ffffff;
 }
 
+/* ========== Formulario agregar tarea ========== */
 .add-task {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
 }
 
 .add-task input,
 .add-task textarea,
 .add-task button,
 input[type="date"] {
-  width: 100%;
+  width: 65%;
   padding: 0.5rem;
   border: none;
   border-radius: 8px;
@@ -43,6 +62,8 @@ input[type="date"] {
   font-size: 1rem;
   outline: none;
   transition: background 0.3s;
+  text-align: center;
+  margin-bottom: 0.75rem;
 }
 
 .add-task input::placeholder,
@@ -68,50 +89,63 @@ input[type="date"]:focus {
   transform: scale(1.02);
 }
 
+/* ========== Lista de tareas ========== */
 .task-list {
   list-style: none;
   padding: 0;
-  margin-top: 1rem;
+  margin: 1rem auto;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .task-item {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #2c2c2c;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  padding: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: background 0.3s;
 }
 
 .task-item:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
 }
 
-.task-item.completed span,
-.task-item.completed strong {
+.task-item.completed strong,
+.task-item.completed span {
   text-decoration: line-through;
   color: #888;
 }
 
-.task-item strong {
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.task-item p {
+.task-content strong {
+  font-size: 1.1rem;
+}
+
+.task-content p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #ccc;
 }
 
-.task-item small {
-  display: block;
+.task-content small {
   font-size: 0.8rem;
-  color: #999;
-  margin-top: 0.25rem;
+  color: #888;
 }
 
 .task-item button {
@@ -125,4 +159,46 @@ input[type="date"]:focus {
 
 .task-item button:hover {
   color: #ff4c4c;
+}
+
+/* ========== Footer principal ========== */
+.main-footer {
+  text-align: center;
+  padding: 1rem 0;
+  color: #ccc;
+  font-size: 0.8rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+.main-footer .footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.main-footer .footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.main-footer .footer-links a:hover {
+  color: #28a745;
+}
+.edit-btn {
+  background: transparent;
+  border: none;
+  color: #4caf50;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  transition: color 0.3s;
+}
+
+.edit-btn:hover {
+  color: #45a049;
 }
