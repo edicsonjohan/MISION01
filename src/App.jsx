@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { FaHome, FaRegCalendar, FaUser, FaBars, FaClipboardList } from "react-icons/fa";
+import {
+  FaHome,
+  FaRegCalendar,
+  FaUser,
+  FaBars,
+  FaClipboardList,
+} from "react-icons/fa";
 
 import AddTask from "./components/AddTask";
 import TaskList from "./components/TaskList";
 import CalendarPage from "./components/CalendarPage";
 import ContactPage from "./components/ContactPage";
 import Missql from "./components/Missql";
+import Tareasdos from "./components/Tareasdos";
 import "./styles.css";
 
 function App() {
@@ -95,6 +102,11 @@ function App() {
                 <FaClipboardList />
               </Link>
             </li>
+            <li>
+              <Link to="/Tareasdos" onClick={() => setIsSidebarOpen(false)}>
+                <FaClipboardList />
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -103,7 +115,8 @@ function App() {
           <Routes>
             <Route path="/calendar" element={<CalendarPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/Missql" element={<Missql/>} />
+            <Route path="/Missql" element={<Missql />} />
+            <Route path="/Tareasdos" element={<Tareasdos />} />
             <Route
               path="/"
               element={
