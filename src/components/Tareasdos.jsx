@@ -8,7 +8,7 @@ const Tareasdos = () => {
       <img
         src="/TAREASMER2.png"
         alt="TAREAS"
-        style={{ width: "100%", maxWidth: "800px", marginBottom: "2rem" }}
+        style={{ width: "100%", maxWidth: "600px", marginBottom: "2rem" }}
       />
       <p>
         Esta página tiene como propósito fabricar una rutina minimalista de
@@ -17,6 +17,24 @@ const Tareasdos = () => {
         productividad.
       </p>
       <h1>EVIDENCIAS(Insert, Update, Delete)</h1>
+      <p>Insert</p>
+      <img
+        src="/INSERT.png"
+        alt="INSERT"
+        style={{ width: "70%", maxWidth: "600px", marginBottom: "2rem" }}
+      />
+      <p>Update</p>
+      <img
+        src="/UPDATE.png"
+        alt="UPDATE"
+        style={{ width: "70%", maxWidth: "600px", marginBottom: "2rem" }}
+      />
+      <p>Delete</p>
+      <img
+        src="/DELETE.png"
+        alt="DELETE"
+        style={{ width: "70%", maxWidth: "600px", marginBottom: "2rem" }}
+      />
     </div>
   );
 };
