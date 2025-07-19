@@ -202,3 +202,14 @@ input[type="date"]:focus {
 .edit-btn:hover {
   color: #45a049;
 }
+.tareasdos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente si quieres */
+  align-items: center;     /* centra horizontalmente */
+  text-align: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #111; /* opcional */
+  color: white;
+}

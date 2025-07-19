@@ -2,20 +2,21 @@ import React from "react";
 
 const Tareasdos = () => {
   return (
-    <div style={{ padding: "2rem", color: "#fff" }}>
-      <h1>REPRESENTACION MER</h1>
+    <div className="tareasdos">
+      <h1>REPRESENTACIÓN MER</h1>
       <p>EDICSON JOHAN LOPEZ MENESES</p>
       <img
-        src="/TAREASMER.png"
+        src="/TAREASMER2.png"
         alt="TAREAS"
         style={{ width: "100%", maxWidth: "800px", marginBottom: "2rem" }}
       />
       <p>
-        Esta pagina tiene como propósito fabricar una rutina minimalista de
-        gestión de tiempo, para que el usuario este al tanto de sus deberes
+        Esta página tiene como propósito fabricar una rutina minimalista de
+        gestión de tiempo, para que el usuario esté al tanto de sus deberes,
         aportando una reducción significativa del estrés y un aumento en la
-        productividad
+        productividad.
       </p>
+      <h1>EVIDENCIAS(Insert, Update, Delete)</h1>
     </div>
   );
 };

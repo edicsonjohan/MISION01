@@ -359,3 +359,34 @@ p {
     background-color: #000000;
   }
 }
+tareas-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente si quieres */
+  align-items: center;     /* centra horizontalmente */
+  text-align: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #111; /* opcional */
+  color: white;
+}
+
+.tareas-img {
+  display: block;
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.tareas-text {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.tareas-footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
