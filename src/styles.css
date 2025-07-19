@@ -209,7 +209,7 @@ input[type="date"]:focus {
   align-items: center;     /* centra horizontalmente */
   text-align: center;
   padding: 2rem;
-  min-height: 300vh;
+  min-height: 250vh;
   background-color: #111; /* opcional */
   color: white;
 }
