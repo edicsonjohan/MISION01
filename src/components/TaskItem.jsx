@@ -9,7 +9,12 @@ function TaskItem({ task, onToggle, onDelete, onEdit }) {
   const handleEditSubmit = (e) => {
     e.preventDefault();
     if (editedTitle.trim()) {
-      onEdit(task.id, editedTitle.trim(), editedDescription.trim());
+      const updatedTask = {
+        ...task,
+        title: editedTitle.trim(),
+        description: editedDescription.trim(),
+      };
+      onEdit(updatedTask); // 👈 pasamos el objeto tarea actualizado
       setIsEditing(false);
     }
   };
@@ -37,7 +42,7 @@ function TaskItem({ task, onToggle, onDelete, onEdit }) {
           </button>
         </form>
       ) : (
-        <div className="task-content" onClick={() => onToggle(task.id)}>
+        <div className="task-content" onClick={() => onToggle(task)}>
           <strong>{task.title}</strong>
           <p>{task.description}</p>
         </div>

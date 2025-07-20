@@ -1,32 +1,49 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-function AddTask({ onAdd }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [dueDate, setDueDate] = useState('');
+const API_URL = "http://localhost:3001/api";
 
+function AddTask({ onTaskCreated }) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  // Manejar el envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title.trim() && dueDate) {
-  onAdd({ title, description, dueDate });
-  setTitle('');
-  setDescription('');
-  setDueDate('');
-}
+    if (!title.trim()) return;
 
+    // Datos obligatorios para tu backend (ajusta los IDs según lo que tengas)
+    const newTask = {
+      title: title.trim(),
+      description: description.trim(),
+      userId: 1,        // ← Asegúrate de que este user exista
+      categoryId: 1     // ← Asegúrate de que esta categoría exista
+    };
+
+    try {
+      const res = await fetch(`${API_URL}/tasks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+      });
+
+      const created = await res.json();
+
+      // Notificar al componente padre que se creó una tarea
+      if (onTaskCreated) {
+        onTaskCreated(created);
+      }
+
+      // Limpiar el formulario
+      setTitle("");
+      setDescription("");
+    } catch (error) {
+      console.error("Error al agregar tarea:", error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}> 
-    <input
-        type="date"
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-        required
-      />
-      
+    <form onSubmit={handleSubmit} className="add-task-form">
       <input
         type="text"
         placeholder="Título de la tarea"
