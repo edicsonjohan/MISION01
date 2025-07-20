@@ -11,6 +11,9 @@
     "start": "node src/server.js",
     "postinstall": "prisma generate"
   },
+   "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "react": "^19.1.0",
     "react-calendar": "^6.0.0",
