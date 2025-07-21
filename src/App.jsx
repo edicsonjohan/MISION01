@@ -18,33 +18,27 @@ import "./styles.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [dueDate, setDueDate] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Cargar tareas desde localStorage
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(savedTasks);
   }, []);
 
-  // Guardar tareas en localStorage cada vez que cambian
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  // Agregar tarea
   const addTask = (data) => {
     const newTask = {
       id: Date.now(),
       title: data.title,
       description: data.description,
-      dueDate,
       completed: false,
     };
     setTasks([newTask, ...tasks]);
   };
 
-  // Alternar estado completado
   const toggleTask = (id) => {
     setTasks((prev) =>
       prev.map((task) =>
@@ -53,12 +47,10 @@ function App() {
     );
   };
 
-  // Eliminar tarea
   const deleteTask = (id) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
-  // Editar tarea
   const editTask = (id, updatedTitle, updatedDescription) => {
     setTasks((prev) =>
       prev.map((task) =>
@@ -80,7 +72,6 @@ function App() {
           >
             <FaBars />
           </button>
-
           <ul>
             <li>
               <Link to="/" onClick={() => setIsSidebarOpen(false)}>
@@ -123,21 +114,18 @@ function App() {
                 <div className="card">
                   <h1>Mis Tareas</h1>
                   <AddTask onAdd={addTask} />
-                  <p>
-                    {tasks.filter((t) => !t.completed).length} tareas pendientes
-                  </p>
+                  <p>{tasks.filter((t) => !t.completed).length} tareas pendientes</p>
                   <TaskList
                     tasks={tasks}
                     onToggle={toggleTask}
                     onDelete={deleteTask}
-                    onEdit={editTask} // ✅ Lo agregamos correctamente aquí
+                    onEdit={editTask}
                   />
                 </div>
               }
             />
           </Routes>
 
-          {/* Footer */}
           <footer className="main-footer">
             <p>&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
             <div className="footer-links">
