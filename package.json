@@ -7,11 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "node src/server.js",
-    "postinstall": "prisma generate"
+    "preview": "vite preview"
   },
-   "engines": {
+  "engines": {
     "node": "22.x"
   },
   "dependencies": {
@@ -46,32 +44,4 @@
     "url": "https://github.com/edicsonjohan/MISION01/issues"
   },
   "homepage": "https://github.com/edicsonjohan/MISION01#readme"
-}
-
-{
-  "name": "task-manager-backend",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "start": "node src/server.js",
-    "postinstall": "prisma generate",
-    "dev": "nodemon src/server.js"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.12.0",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "express": "^5.1.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0",
-    "prisma": "^6.12.0"
-  },
-  "keywords": [],
-  "author": "Edicson Johan",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/edicsonjohan/MISION01"
-  }
 }
