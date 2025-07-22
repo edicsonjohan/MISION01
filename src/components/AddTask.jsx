@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const API_URL = "https://mision01.onrender.com/api"; // ✅ Backend en Render
+const API_URL = "https://mision01.onrender.com/api";
 
 function AddTask({ onTaskCreated }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [fecha, setFecha] = useState(""); // ✅ nuevo campo opcional
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,33 +14,29 @@ function AddTask({ onTaskCreated }) {
     const newTask = {
       title: title.trim(),
       description: description.trim(),
-      userId: 1,        // ⚠️ Asegúrate que existe en tu DB
-      categoryId: 1     // ⚠️ Asegúrate que existe también
+      userId: 1,
+      categoryId: 1,
+      fecha: fecha || new Date().toISOString().split("T")[0], // YYYY-MM-DD
     };
 
     try {
-      const response = await fetch(`${API_URL}/tasks`, {
+      const res = await fetch(`${API_URL}/tasks`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTask),
       });
 
-      if (!response.ok) {
-        throw new Error("No se pudo crear la tarea.");
+      if (!res.ok) {
+        throw new Error("Error al crear tarea");
       }
 
-      const createdTask = await response.json();
-
-      // Notifica al componente padre
-      if (onTaskCreated) {
-        onTaskCreated(createdTask);
-      }
+      const created = await res.json();
+      onTaskCreated && onTaskCreated(created);
 
       // Limpia el formulario
       setTitle("");
       setDescription("");
+      setFecha("");
     } catch (error) {
       console.error("❌ Error al agregar tarea:", error.message);
     }
@@ -58,6 +55,12 @@ function AddTask({ onTaskCreated }) {
         placeholder="Descripción"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="date"
+        value={fecha}
+        onChange={(e) => setFecha(e.target.value)}
+        required
       />
       <button type="submit">Agregar Tarea</button>
     </form>
