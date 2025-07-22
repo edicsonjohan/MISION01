@@ -14,10 +14,20 @@ function TaskItem({ task, onToggle, onDelete, onEdit }) {
         title: editedTitle.trim(),
         description: editedDescription.trim(),
       };
-      onEdit(updatedTask); // 👈 pasamos el objeto tarea actualizado
+      onEdit(updatedTask);
       setIsEditing(false);
     }
   };
+
+  // 🗓️ Formatear la fecha si existe
+  const mostrarFecha = task.fecha || task.createdAt || null;
+  const fechaFormateada = mostrarFecha
+    ? new Date(mostrarFecha).toLocaleDateString("es-CO", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
 
   return (
     <li className={`task-item ${task.completed ? "completed" : ""}`}>
@@ -45,6 +55,9 @@ function TaskItem({ task, onToggle, onDelete, onEdit }) {
         <div className="task-content" onClick={() => onToggle(task)}>
           <strong>{task.title}</strong>
           <p>{task.description}</p>
+          {fechaFormateada && (
+            <p className="task-date">📅 {fechaFormateada}</p>
+          )}
         </div>
       )}
 
