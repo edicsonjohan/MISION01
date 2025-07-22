@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const API_URL = "http://localhost:3001/api";
 
-function AddTask({ onTaskCreated }) {
+function AddTask({ onAdd }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -10,12 +10,11 @@ function AddTask({ onTaskCreated }) {
     e.preventDefault();
     if (!title.trim()) return;
 
-    // Datos obligatorios para tu backend (ajusta los IDs según lo que tengas)
     const newTask = {
       title: title.trim(),
       description: description.trim(),
-      userId: 1,        // ← Asegúrate de que este user exista
-      categoryId: 1     // ← Asegúrate de que esta categoría exista
+      userId: 1,        // Asegúrate que este usuario exista en tu base de datos
+      categoryId: 1     // Asegúrate que esta categoría también exista
     };
 
     try {
@@ -29,9 +28,9 @@ function AddTask({ onTaskCreated }) {
 
       const created = await res.json();
 
-      // Notificar al componente padre que se creó una tarea
-      if (onTaskCreated) {
-        onTaskCreated(created);
+      // Notificar al componente padre (App.jsx)
+      if (onAdd) {
+        onAdd(created);
       }
 
       // Limpiar el formulario
