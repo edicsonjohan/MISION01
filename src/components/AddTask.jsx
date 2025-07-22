@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const API_URL = "http://localhost:3001/api";
+const API_URL = "https://mision01.onrender.com/api"; // ✅ Backend en Render
 
-function AddTask({ onAdd }) {
+function AddTask({ onTaskCreated }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -13,12 +13,12 @@ function AddTask({ onAdd }) {
     const newTask = {
       title: title.trim(),
       description: description.trim(),
-      userId: 1,        // Asegúrate que este usuario exista en tu base de datos
-      categoryId: 1     // Asegúrate que esta categoría también exista
+      userId: 1,        // ⚠️ Asegúrate que existe en tu DB
+      categoryId: 1     // ⚠️ Asegúrate que existe también
     };
 
     try {
-      const res = await fetch(`${API_URL}/tasks`, {
+      const response = await fetch(`${API_URL}/tasks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,18 +26,22 @@ function AddTask({ onAdd }) {
         body: JSON.stringify(newTask),
       });
 
-      const created = await res.json();
-
-      // Notificar al componente padre (App.jsx)
-      if (onAdd) {
-        onAdd(created);
+      if (!response.ok) {
+        throw new Error("No se pudo crear la tarea.");
       }
 
-      // Limpiar el formulario
+      const createdTask = await response.json();
+
+      // Notifica al componente padre
+      if (onTaskCreated) {
+        onTaskCreated(createdTask);
+      }
+
+      // Limpia el formulario
       setTitle("");
       setDescription("");
     } catch (error) {
-      console.error("Error al agregar tarea:", error);
+      console.error("❌ Error al agregar tarea:", error.message);
     }
   };
 
