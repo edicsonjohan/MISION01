@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api";
+const API_URL = "https://mision01.onrender.com/api";
 
 export const getTasks = async () => {
   const response = await fetch(`${API_URL}/tasks`);
