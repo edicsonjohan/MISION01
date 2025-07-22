@@ -20,6 +20,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // Solo para pruebas locales, puedes eliminar esto si solo trabajas con backend:
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(savedTasks);
@@ -29,14 +30,9 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (data) => {
-    const newTask = {
-      id: Date.now(),
-      title: data.title,
-      description: data.description,
-      completed: false,
-    };
-    setTasks([newTask, ...tasks]);
+  // ✅ CORREGIDO: ya no se recrea, se usa lo que llega del backend
+  const addTask = (taskFromServer) => {
+    setTasks((prev) => [taskFromServer, ...prev]);
   };
 
   const toggleTask = (id) => {
@@ -140,3 +136,4 @@ function App() {
 }
 
 export default App;
+
