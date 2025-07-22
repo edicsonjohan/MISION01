@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const API_URL = "https://mision01.onrender.com/api";
 
-function AddTask({ onTaskCreated }) {
+function AddTask({ onAdd }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fecha, setFecha] = useState(""); // ✅ nuevo campo opcional
@@ -31,7 +31,7 @@ function AddTask({ onTaskCreated }) {
       }
 
       const created = await res.json();
-      onTaskCreated && onTaskCreated(created);
+      onAdd && onAdd(created);
 
       // Limpia el formulario
       setTitle("");
